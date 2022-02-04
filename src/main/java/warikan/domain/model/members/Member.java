@@ -1,74 +1,75 @@
 package warikan.domain.model.members;
 
 import java.util.Objects;
+
 import javax.annotation.Nonnull;
+
+import warikan.domain.model.payment.PaymentType;
 
 /** 参加者。 */
 public final class Member {
-  private final MemberName name;
-  private final SecretaryType secretaryType;
+    private final MemberName name;
 
-  private Member(@Nonnull MemberName name, @Nonnull SecretaryType secretaryType) {
-    this.name = name;
-    this.secretaryType = secretaryType;
-  }
+    private final MemberType memberType;
 
-  /**
-   * ファクトリメソッド。
-   *
-   * @param name {@link MemberName}
-   * @param secretaryType {@link SecretaryType}
-   * @return {@link Member}
-   */
-  @Nonnull
-  public static Member of(@Nonnull MemberName name, @Nonnull SecretaryType secretaryType) {
-    return new Member(name, secretaryType);
-  }
+    private final PaymentType paymentType;
 
-  /**
-   * ファクトリメソッド。
-   *
-   * @param name {@link MemberName}
-   * @return {@link Member}
-   */
-  @Nonnull
-  public static Member of(@Nonnull MemberName name) {
-    return new Member(name, SecretaryType.NonSecretary);
-  }
+    private Member(@Nonnull MemberName name, @Nonnull MemberType memberType, @Nonnull PaymentType paymentType) {
+        this.name = name;
+        this.memberType = memberType;
+        this.paymentType = paymentType;
+    }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    Member member = (Member) o;
-    return Objects.equals(name, member.name) && secretaryType == member.secretaryType;
-  }
+    /**
+     * ファクトリメソッド。
+     *
+     * @param name {@link MemberName}
+     * @param memberType {@link MemberType}
+     * @return {@link Member}
+     */
+    @Nonnull
+    public static Member of(@Nonnull MemberName name, @Nonnull MemberType memberType, @Nonnull PaymentType paymentType) {
+        return new Member(name, memberType, paymentType);
+    }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(name, secretaryType);
-  }
+    /**
+     * ファクトリメソッド。
+     *
+     * @param name {@link MemberName}
+     * @return {@link Member}
+     */
+    @Nonnull
+    public static Member of(@Nonnull MemberName name) {
+        return new Member(name, MemberType.NonSecretary, PaymentType.MIDIUM);
+    }
 
-  @Override
-  public String toString() {
-    return "Member{" + "name=" + name + ", secretaryType=" + secretaryType + '}';
-  }
+    @Override
+    public int hashCode() {
+        return Objects.hash(memberType, name, paymentType);
+    }
 
-  @Nonnull
-  MemberName name() {
-    return name;
-  }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Member other = (Member) obj;
+        return memberType == other.memberType && Objects.equals(name, other.name) && paymentType == other.paymentType;
+    }
 
-  @Nonnull
-  SecretaryType secretaryType() {
-    return secretaryType;
-  }
+    @Override
+    public String toString() {
+        return "Member [name=" + name + ", memberType=" + memberType + ", paymentType=" + paymentType + "]";
+    }
 
-  public boolean isSecretary() {
-    return secretaryType.equals(SecretaryType.Secretary);
-  }
+    public boolean isSecretary() {
+        return memberType.equals(MemberType.Secretary);
+    }
 
-  public boolean nonSecretary() {
-    return !isSecretary();
-  }
+    public boolean nonSecretary() {
+        return !isSecretary();
+    }
 }
