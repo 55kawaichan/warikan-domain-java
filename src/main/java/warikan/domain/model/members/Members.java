@@ -121,4 +121,31 @@ public final class Members {
             values.stream().filter(Member::nonSecretary).collect(Collectors.toList());
         return new Members(members);
     }
+
+    /**
+     * 支払い割合を取得
+     *
+     * @return
+     */
+    public int getTotalPaymentRate() {
+        int rate = 0;
+        for (Member member : this.values) {
+            rate += member.getPaymentType().getRate();
+        }
+        return rate;
+    }
+
+    /**
+     * 支払い金額を取得
+     *
+     * @return
+     */
+    public MemberPaymentAmounts calcMemberPaymentAmount(int unit) {
+        List<MemberPaymentAmount> memberPaymentAmounts = new ArrayList<MemberPaymentAmount>();
+        for (Member member : this.values) {
+            int paymentAmount = member.getPaymentType().getRate() * unit;
+            memberPaymentAmounts.add(MemberPaymentAmount.of(member, paymentAmount));
+        }
+        return MemberPaymentAmounts.of(memberPaymentAmounts);
+    }
 }

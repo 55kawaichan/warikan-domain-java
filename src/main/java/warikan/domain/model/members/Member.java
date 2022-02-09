@@ -72,4 +72,16 @@ public final class Member {
     public boolean nonSecretary() {
         return !isSecretary();
     }
+
+    public MemberName getName() {
+        return name;
+    }
+
+    public MemberType getMemberType() {
+        return memberType;
+    }
+
+    public PaymentType getPaymentType() {
+        return paymentType;
+    }
 }

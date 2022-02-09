@@ -2,12 +2,22 @@ package warikan.domain.model.payment;
 
 /** 支払い区分 */
 public enum PaymentType {
-    /** スモール。 */
-    SMALL,
+    /** スモール */
+    SMALL(8),
     /** ミディアム。 */
-    MIDIUM,
+    MIDIUM(10),
     /** ラージ。 */
-    LARGE,
+    LARGE(12),
     /** スリーXラージ。 */
-    ThreeXL;
+    ThreeXL(14);
+
+    private final int rate;
+
+    PaymentType(int rate) {
+        this.rate = rate;
+    }
+
+    public int getRate() {
+        return rate;
+    }
 }

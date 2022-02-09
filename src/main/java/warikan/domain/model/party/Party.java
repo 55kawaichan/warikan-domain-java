@@ -1,9 +1,11 @@
 package warikan.domain.model.party;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 import javax.annotation.Nonnull;
 
+import warikan.domain.model.members.MemberPaymentAmounts;
 import warikan.domain.model.members.Members;
 import warikan.domain.model.payment.PaymentRates;
 
@@ -58,5 +60,25 @@ public final class Party {
     @Nonnull
     public static Party of(@Nonnull PartyName name, @Nonnull LocalDateTime startDateTime) {
         return new Party(name, startDateTime);
+    }
+
+    /**
+     * 割り勘
+     *
+     * @param billing
+     * @return {@link MemberPaymentAmounts}
+     */
+    @Nonnull
+    public MemberPaymentAmounts warikan(Integer billing) {
+        // 1. 参加者一覧からそれぞれの支払い割合を取得
+        // 2. 請求金額を1の合計で割る
+        // 3. 参加者一覧の数だけ下記を繰り返す
+        //   3.1. 支払い割合 * 2の結果
+        //   3.2. 参加者支払い金額を生成 
+        // 4. 3の結果より参加者支払い金額一覧を生成してreturnする
+        int totalRate = this.members.getTotalPaymentRate();
+        int unit = billing / totalRate;
+
+        return MemberPaymentAmounts.of(new ArrayList<>());
     }
 }
