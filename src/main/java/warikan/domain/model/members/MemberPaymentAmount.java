@@ -25,4 +25,10 @@ public final class MemberPaymentAmount {
     public static MemberPaymentAmount of(@Nonnull Member member, @Nonnull Integer paymentAmount) {
         return new MemberPaymentAmount(member, paymentAmount);
     }
+
+	@Override
+	public String toString() {
+		return "MemberPaymentAmount [member=" + member + ", paymentAmount=" + paymentAmount + "]";
+	}
+
 }

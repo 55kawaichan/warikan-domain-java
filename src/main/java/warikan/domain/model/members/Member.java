@@ -57,7 +57,7 @@ public final class Member {
         if (getClass() != obj.getClass())
             return false;
         Member other = (Member) obj;
-        return memberType == other.memberType && Objects.equals(name, other.name) && paymentType == other.paymentType;
+        return Objects.equals(name, other.name);
     }
 
     @Override

@@ -23,4 +23,8 @@ public final class MemberPaymentAmounts {
     public static MemberPaymentAmounts of(@Nonnull List<MemberPaymentAmount> memberPaymentAmounts) {
         return new MemberPaymentAmounts(memberPaymentAmounts);
     }
+
+    public List<MemberPaymentAmount> getMemberPaymentAmounts() {
+		return memberPaymentAmounts;
+	}
 }

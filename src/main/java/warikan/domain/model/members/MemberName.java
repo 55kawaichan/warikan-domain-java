@@ -1,6 +1,7 @@
 package warikan.domain.model.members;
 
 import java.util.Objects;
+
 import javax.annotation.Nonnull;
 
 /** 参加者名。 */
@@ -45,4 +46,8 @@ public final class MemberName {
   public String toString() {
     return "MemberName{" + "value='" + value + '\'' + '}';
   }
+
+  public String getValue() {
+	return value;
+}
 }
