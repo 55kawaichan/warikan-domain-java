@@ -171,11 +171,8 @@ public final class Members {
 	 * @return
 	 */
 	public MemberPaymentAmounts calcMemberPaymentAmount(int unit) {
-		List<MemberPaymentAmount> memberPaymentAmounts = new ArrayList<MemberPaymentAmount>();
-		for (Member member : this.values) {
-			int paymentAmount = member.getPaymentType().getRate() * unit;
-			memberPaymentAmounts.add(MemberPaymentAmount.of(member, paymentAmount));
-		}
-		return MemberPaymentAmounts.of(memberPaymentAmounts);
+		return MemberPaymentAmounts.of(values.stream()
+			.map(m -> m.calcPaymentAmount(unit))
+			.collect(Collectors.toList()));
 	}
 }

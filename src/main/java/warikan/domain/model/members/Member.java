@@ -84,4 +84,8 @@ public final class Member {
     public PaymentType getPaymentType() {
         return paymentType;
     }
+    
+    public MemberPaymentAmount calcPaymentAmount(int unit) {
+    	return MemberPaymentAmount.of(this, paymentType.calcPaymentAmount(unit));
+    }
 }
