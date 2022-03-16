@@ -20,4 +20,8 @@ public enum PaymentType {
     public int getRate() {
         return rate;
     }
+    
+    public int calcPaymentAmount(int unit) {
+    	return rate * unit;
+    }
 }
