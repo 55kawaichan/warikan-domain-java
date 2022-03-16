@@ -2,7 +2,10 @@ package warikan.domain.model.members;
 
 import javax.annotation.Nonnull;
 
+import lombok.EqualsAndHashCode;
+
 /** 参加者支払い金額。 */
+@EqualsAndHashCode
 public final class MemberPaymentAmount {
     private final Member member;
 

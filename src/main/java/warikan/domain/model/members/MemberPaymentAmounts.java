@@ -4,7 +4,12 @@ import java.util.List;
 
 import javax.annotation.Nonnull;
 
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
 /** 参加者支払い金額一覧。 */
+@EqualsAndHashCode
+@ToString
 public final class MemberPaymentAmounts {
     private final List<MemberPaymentAmount> memberPaymentAmounts;
 
